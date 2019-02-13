@@ -16,7 +16,7 @@ exports.checkObjectId = (ctx, next) => {
     return null;
   }
 
-  return next(); // next를 리턴해야 ctx.body가 제대로 설정됩니다.
+  return next(); // next를 리턴해야 ctx.body가 제대로 설정
 };
 
 /**
