@@ -69,7 +69,7 @@ exports.write = async ctx => {
 exports.list = async ctx => {
   // page가 주어지지 않았다면 1로 간주
   // query는 문자열 형태로 받아 오므로 숫자로 변환
-  const page = parseInt(ctx.query.page || 1, 10);
+  const page = parseInt(ctx.query.page || 1, PAGE);
 
   // 잘못된 페이지가 주어졌다면 오류
   if (page < 1) {
@@ -83,7 +83,7 @@ exports.list = async ctx => {
       .limit(PAGE) // 데이터제한
       .skip((page - 1) * PAGE) // 다음 페이지 데이터
       .lean() // JSON 형태로 전환
-      .exec();
+      .exec(); // 데이터를 서버에 요청합니다.
 
     const postCount = await Post.count().exec();
 
