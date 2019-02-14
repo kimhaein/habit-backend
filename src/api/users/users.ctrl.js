@@ -14,11 +14,11 @@ exports.checkObjectId = (ctx, next) => {
 
   // 검증 실패
   if (!ObjectId.isValid(id)) {
-    ctx.status = 400; // 400 Bad Request
+    ctx.status = 400;
     return null;
   }
 
-  return next(); // next를 리턴해야 ctx.body가 제대로 설정됩니다.
+  return next(); // 필수
 };
 
 /**
@@ -29,7 +29,7 @@ exports.checkObjectId = (ctx, next) => {
 exports.write = async ctx => {
   // 객체가 지닌 값들을 검증
   const schema = Joi.object().keys({
-    email: Joi.string().required(), // 뒤에 required를 붙여 주면 필수 항목이라는 의미
+    email: Joi.string().required(),
     password: Joi.string().required(),
     user_name: Joi.string().required()
   });
@@ -46,7 +46,6 @@ exports.write = async ctx => {
 
   const { email, password, user_name } = ctx.request.body;
 
-  // 새 users 인스턴스를 만듭니다.
   const users = new Users({
     email,
     password: crypto
@@ -57,10 +56,9 @@ exports.write = async ctx => {
   });
 
   try {
-    await users.save(); // 데이터베이스에 등록합니다.
-    ctx.body = users; // 저장된 결과를 반환합니다.
+    await users.save();
+    ctx.body = users;
   } catch (e) {
-    // 데이터베이스의 오류가 발생합니다.
     ctx.throw(e, 500);
   }
 };
@@ -70,8 +68,6 @@ exports.write = async ctx => {
  * GET /api/users
  */
 exports.list = async ctx => {
-  // page가 주어지지 않았다면 1로 간주
-  // query는 문자열 형태로 받아 오므로 숫자로 변환
   const page = parseInt(ctx.query.page || 1, PAGE);
 
   //잘못된 페이지가 주어졌다면 오류
@@ -80,6 +76,7 @@ exports.list = async ctx => {
     return;
   }
 
+  //데이터
   try {
     const users = await Users.find()
       .where("end")
@@ -119,7 +116,8 @@ exports.read = async ctx => {
     const user = await Users.findById(id)
       .select("email user_name user_thumnail created_at")
       .exec();
-    // 포스트가 존재하지 않습니다.
+
+    // user가 존재하지 않을 때
     if (!user) {
       ctx.status = 404;
       return;
@@ -138,7 +136,7 @@ exports.read = async ctx => {
 };
 
 /**
- * 특정 포스트 수정 (특정 필드 변경)
+ * 고객 정보 수정
  * PATCH /api/users/:id
  * { email, password, user_name, push, img, end_date}
  */
@@ -147,10 +145,9 @@ exports.update = async ctx => {
   try {
     const user = await Users.findByIdAndUpdate(id, ctx.request.body, {
       new: true
-      // 이 값을 설정해야 업데이트된 객체를 반환합니다.
-      // 설정하지 않으면 업데이트되기 전의 객체를 반환합니다.
     }).exec();
-    // 포스트가 존재하지 않을 때
+
+    // user가 존재하지 않을 때
     if (!user) {
       ctx.status = 404;
       return;
