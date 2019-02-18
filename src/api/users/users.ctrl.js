@@ -142,10 +142,22 @@ exports.read = async ctx => {
  */
 exports.update = async ctx => {
   const { id } = ctx.params;
+  const body = ctx.request.body;
+
   try {
-    const user = await Users.findByIdAndUpdate(id, ctx.request.body, {
-      new: true
-    }).exec();
+    const user = await Users.findByIdAndUpdate(
+      id,
+      {
+        ...body,
+        password: crypto
+          .createHmac("sha256", process.env.SECRET_KEY)
+          .update(body.password)
+          .digest("hex")
+      },
+      {
+        new: true
+      }
+    ).exec();
 
     // user가 존재하지 않을 때
     if (!user) {
