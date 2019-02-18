@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const HabitLog = new Schema(
   {
     habit_id: { type: Schema.Types.ObjectId, required: true },
-    habit_date: { type: String, required: true },
+    habit_date: { type: Date, required: true },
     habit_yn: { type: String, default: "N" }
   },
   {

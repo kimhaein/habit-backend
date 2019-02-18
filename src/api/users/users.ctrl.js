@@ -64,7 +64,7 @@ exports.write = async ctx => {
 };
 
 /**
- * 고객 목록 조회
+ * 고객 전체 목록 조회
  * GET /api/users
  */
 exports.list = async ctx => {
@@ -79,9 +79,9 @@ exports.list = async ctx => {
   //데이터
   try {
     const users = await Users.find()
-      .where("end")
-      .equals(false)
-      .select("email user_name user_thumnail created_at")
+      // .where("end")
+      // .equals(false)
+      // .select("email user_name user_thumnail created_at end")
       .sort({ id: -1 }) // 최신순으로
       .limit(PAGE) // 데이터제한
       .skip((page - 1) * PAGE) // 다음 페이지 데이터
