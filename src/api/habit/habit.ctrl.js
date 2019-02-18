@@ -154,7 +154,7 @@ exports.list = async ctx => {
         .format("YYYY-MM-DD")
     );
   }
-  console.log(date);
+
   //데이터
   try {
     const habits = await Habit.aggregate([
@@ -198,8 +198,6 @@ exports.list = async ctx => {
       }
     ]);
 
-    const habitCount = await Habit.count().exec();
-
     ctx.body = {
       contents: habits,
       response: {
@@ -210,6 +208,7 @@ exports.list = async ctx => {
 
     // 마지막 페이지 알려 주기
     // ctx.set은 response header를 설정
+    const habitCount = await Habit.count().exec();
     ctx.set("Last-Page", Math.ceil(habitCount / PAGE));
   } catch (e) {
     ctx.throw(e, 500);
