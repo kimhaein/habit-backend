@@ -85,7 +85,7 @@ exports.write = async ctx => {
 };
 
 /**
- * 습관 목록 조회
+ * 전체 습관 목록 조회
  * GET /api/habit/:user_id?page=1
  */
 exports.total_list = async ctx => {
@@ -244,7 +244,7 @@ exports.read = async ctx => {
 };
 
 /**
- * 특정 습관 제거
+ * 습관 제거
  * DELETE /api/habit/info/:habit_id
  */
 exports.remove = async ctx => {
@@ -259,7 +259,7 @@ exports.remove = async ctx => {
 };
 
 /**
- * 습관 정보 수정
+ * 습관 수정
  * PATCH /api/habit/info/:habit_id
  * {user_id, title, color, start_at, end_at, push_time, reward_img, reward_text, memo, achieve_rate}
  */
