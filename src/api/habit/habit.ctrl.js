@@ -23,7 +23,7 @@ exports.checkObjectId = (ctx, next) => {
 /**
  * 습관 등록
  * POST /api/habit
- * {user_id, title, color, start_at, end_at, push_time, reward_img, reward_text, memo ,achieve_rate}
+ * {user_id, title, color, start_at, end_at, push_time, reward_img, reward_text, memo}
  */
 exports.write = async ctx => {
   // 객체가 지닌 값들을 검증
@@ -85,7 +85,7 @@ exports.write = async ctx => {
 };
 
 /**
- * 습관 전체 목록 조회
+ * 습관 목록 조회
  * GET /api/habit/:user_id?page=1
  */
 exports.total_list = async ctx => {
@@ -154,7 +154,7 @@ exports.list = async ctx => {
         .format("YYYY-MM-DD")
     );
   }
-
+  console.log(date);
   //데이터
   try {
     const habits = await Habit.aggregate([
@@ -217,7 +217,7 @@ exports.list = async ctx => {
 };
 
 /**
- * 습관 상세 정보 조회
+ * 습관 상세 정보
  * GET /api/habit/info/:habit_id
  */
 exports.read = async ctx => {
@@ -244,7 +244,7 @@ exports.read = async ctx => {
 };
 
 /**
- * 습관 제거
+ * 특정 습관 제거
  * DELETE /api/habit/info/:habit_id
  */
 exports.remove = async ctx => {
@@ -259,7 +259,7 @@ exports.remove = async ctx => {
 };
 
 /**
- * 습관 수정
+ * 습관 정보 수정
  * PATCH /api/habit/info/:habit_id
  * {user_id, title, color, start_at, end_at, push_time, reward_img, reward_text, memo, achieve_rate}
  */

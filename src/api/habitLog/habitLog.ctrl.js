@@ -11,7 +11,7 @@ exports.checkObjectId = (ctx, next) => {
   const { user_id, habit_id } = ctx.params;
 
   // 검증 실패
-  if (!ObjectId.isValid(user_id) && !ObjectId.isValid(habit_id)) {
+  if (!ObjectId.isValid(user_id) || !ObjectId.isValid(habit_id)) {
     ctx.status = 400; // 400 Bad Request
     return null;
   }
