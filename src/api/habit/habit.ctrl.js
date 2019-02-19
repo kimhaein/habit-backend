@@ -185,6 +185,7 @@ exports.list = async ctx => {
           title: 1,
           created_at: 1,
           end_at: 1,
+          achieve_rate: 1,
           habit_log: {
             $filter: {
               input: "$habit_log",

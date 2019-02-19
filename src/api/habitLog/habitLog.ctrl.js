@@ -169,9 +169,7 @@ exports.update = async ctx => {
     const habit_log = await HabitLog.findByIdAndUpdate(
       habitLog_id,
       ctx.request.body,
-      {
-        new: true
-      }
+      { new: true }
     ).exec();
 
     // user가 존재하지 않을 때
