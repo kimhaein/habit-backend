@@ -19,7 +19,6 @@
   },
   "scripts": {
     "start": "NODE_PATH=src node src",
-    "start:dev": "NODE_PATH=src nodemon --watch src/ src/index.js",
-    "heroku-postbuild": "npm run build"
+    "start:dev": "NODE_PATH=src nodemon --watch src/ src/index.js"
   }
 }
