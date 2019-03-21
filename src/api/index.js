@@ -3,7 +3,7 @@ const posts = require("./posts");
 const users = require("./users");
 const habit = require("./habit");
 const habitLog = require("./habitLog");
-// const rewords = require("./rewords");
+const auth = require("./auth");
 
 const api = new Router();
 
@@ -15,6 +15,8 @@ api.use("/users", users.routes());
 api.use("/habit", habit.routes());
 //습관 로그
 api.use("/habitLog", habitLog.routes());
+//습관 로그
+api.use("/auth", auth.routes());
 
 // 라우터를 내보냅니다.
 module.exports = api;
