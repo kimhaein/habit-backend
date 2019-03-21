@@ -3,7 +3,7 @@ const Users = require("models/users");
 /**
  * 로그인
  * POST /api/auth/login
- * { email, password}
+ * { email, password , autoLogin}
  */
 
 exports.login = async ctx => {
@@ -19,7 +19,6 @@ exports.login = async ctx => {
       .where("password")
       .equals(password);
 
-    console.log(users.length);
     if (users.length > 0) {
       ctx.body = {
         success: true
@@ -34,4 +33,15 @@ exports.login = async ctx => {
   } catch (e) {
     ctx.throw(e, 500);
   }
+};
+
+exports.check = async ctx => {
+  ctx.body = {
+    logged: !!ctx.session.logged
+  };
+};
+
+exports.logout = async ctx => {
+  ctx.session = null;
+  ctx.status = 204;
 };
