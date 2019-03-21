@@ -31,7 +31,7 @@ mongoose.set("useCreateIndex", true);
 
 // 라우터 설정
 router.use("/api", api.routes()); // api 라우트 적용
-router.use("/", api.routes()); // api 라우트 적용
+router.use("/", response.render("pages/index")); // api 라우트 적용
 
 // 라우터 적용 전에 bodyParser 적용
 app.use(bodyParser());
