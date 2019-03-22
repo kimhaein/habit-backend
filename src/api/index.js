@@ -1,5 +1,4 @@
 const Router = require("koa-router");
-const posts = require("./posts");
 const users = require("./users");
 const habit = require("./habit");
 const habitLog = require("./habitLog");
@@ -7,8 +6,6 @@ const auth = require("./auth");
 
 const api = new Router();
 
-//test
-api.use("/posts", posts.routes());
 //사용자
 api.use("/users", users.routes());
 //습관
