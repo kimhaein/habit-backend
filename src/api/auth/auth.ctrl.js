@@ -1,5 +1,5 @@
 const crypto = require("crypto");
-const Users = require("./models/users");
+const Users = require("models/users");
 /**
  * 로그인
  * POST /api/auth/login

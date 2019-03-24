@@ -1,4 +1,4 @@
-const HabitLog = require("./models/habitLog");
+const HabitLog = require("models/habitLog");
 const moment = require("moment");
 const Joi = require("joi");
 const { ObjectId } = require("mongoose").Types;

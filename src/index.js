@@ -33,7 +33,7 @@ mongoose.set("useCreateIndex", true);
 router.use("/api", api.routes()); // api 라우트 적용
 
 router.get("/", async ctx => {
-  ctx.body = "Hello World!";
+  ctx.body = "habit_backend";
 });
 
 // 라우터 적용 전에 bodyParser 적용

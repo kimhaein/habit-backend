@@ -1,5 +1,5 @@
 const crypto = require("crypto");
-const Users = require("./models/users");
+const Users = require("models/users");
 const Joi = require("joi");
 const { ObjectId } = require("mongoose").Types;
 
