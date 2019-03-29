@@ -18,7 +18,7 @@
     "nodemon": "^1.18.10"
   },
   "scripts": {
-    "start": "node src/index.js",
+    "start": "NODE_PATH=src node src",
     "start:dev": "NODE_PATH=src nodemon --watch src/ src/index.js"
   }
 }

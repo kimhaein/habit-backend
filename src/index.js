@@ -50,7 +50,7 @@ app.keys = [signKey];
 // app 인스턴스에 라우터 적용
 app.use(router.routes()).use(router.allowedMethods());
 
-app.listen(port || 6000, () => {
+app.listen(process.env.PORT || port, () => {
   console.log("listening to port", port);
 });
 
