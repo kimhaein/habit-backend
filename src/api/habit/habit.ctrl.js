@@ -145,7 +145,7 @@ exports.list = async ctx => {
     return;
   }
 
-  //이번주 날짜구하기
+  //이번주 날짜구하기ㄱ
   const date = [];
   for (let i = 1; i <= 7; i++) {
     date.push(

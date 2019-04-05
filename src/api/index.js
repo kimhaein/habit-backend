@@ -12,7 +12,7 @@ api.use("/users", users.routes());
 api.use("/habit", habit.routes());
 //습관 로그
 api.use("/habitLog", habitLog.routes());
-//습관 로그
+//로그인&로그아웃
 api.use("/auth", auth.routes());
 
 // 라우터를 내보냅니다.

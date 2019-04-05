@@ -1,11 +1,11 @@
 const crypto = require("crypto");
 const Users = require("models/users");
+
 /**
  * 로그인
  * POST /api/auth/login
- * { email, password , autoLogin}
+ * { email, password }
  */
-
 exports.login = async ctx => {
   let { email, password } = ctx.request.body;
   password = crypto
@@ -35,12 +35,21 @@ exports.login = async ctx => {
   }
 };
 
+/**
+ * 로그인 체크
+ * GET /api/auth/check
+ */
+
 exports.check = async ctx => {
   ctx.body = {
     logged: !!ctx.session.logged
   };
 };
 
+/**
+ * 로그아웃
+ * POST /api/auth/logout
+ */
 exports.logout = async ctx => {
   ctx.session = null;
   ctx.status = 204;
